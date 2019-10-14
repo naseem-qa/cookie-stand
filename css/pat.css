@@ -1,0 +1,45 @@
+body{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAYt4VNdIxem1ug8MrzOnbrj9uO0P265mKtZqO3DfqPZ7TQkkx&s);
+}
+
+h1 { text-align: center;
+         font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
+ul {
+       text-align: center;
+      background-color: peru;
+      padding: 20px;
+      word-spacing:90px;
+      
+}
+ul li {
+    display: inline;
+}
+
+
+  p {
+    font-family: Georgia, 'Times New Roman', Times, serif ;
+    padding:20px;
+}
+footer {
+    text-align: center;
+    background-color: peru;
+
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  h3 {
+      text-align: center;
+      padding: 20px;
+  }
+  ol {
+      padding: 10px;
+  }
+ 
