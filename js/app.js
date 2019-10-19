@@ -1,20 +1,34 @@
+`use strict`;
 
-var hours24 = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+var hours24 = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 var container = document.getElementById('cookies');
+var table = document.createElement('table');
+container.appendChild(table);
+
+var foot;
+
+function addElement(tagName, container, text) {
+    var element = document.createElement(tagName);
+    container.appendChild(element);
+
+    if (text) {
+        element.textContent = text;
+    }
+
+    return element;
+}
 
 function Cities(name, min, max, avg) {
     this.name = name;
     this.min = min;
     this.max = max;
     this.avg = avg;
+
     this.hourlySale = [];
     this.dailySale = 0;
     this.cookiesHourlySales();
-
 }
-
-
 
 
 Cities.prototype.cookiesHourlySales = function () {
@@ -30,9 +44,21 @@ Cities.prototype.cookiesHourlySales = function () {
     }
 }
 
+Cities.prototype.row = function (table) {
 
-var table = document.createElement('table');
-container.appendChild(table);
+    var newLocationRow = addElement('tr', table);
+
+    addElement('td', newLocationRow, this.name);
+
+    for (var i = 0; i < this.hourlySale.length; i++) {
+        var currentHourlySales = this.hourlySale[i];
+        addElement('td', newLocationRow, currentHourlySales);
+    }
+
+    addElement('td', newLocationRow, this.dailySale);
+
+
+}
 
 
 // header row
@@ -55,6 +81,7 @@ function renderHr(table) {
 
 }
 
+// sales rows
 Cities.prototype.render = function (table) {
 
     var tr = document.createElement('tr');
@@ -78,11 +105,12 @@ Cities.prototype.render = function (table) {
     td.textContent = this.dailySale;
 }
 
-
 // //  footer row
 function renderFr(table) {
 
     var tr = document.createElement('tr');
+
+    foot = tr;
 
     table.appendChild(tr);
 
@@ -105,9 +133,9 @@ function renderFr(table) {
 
         for (var citiesIndex = 0; citiesIndex < places.length; citiesIndex++) {
 
-            var shop = places[citiesIndex];
+            var store = places[citiesIndex];
 
-            sum += shop.hourlySale[hIndex];
+            sum += store.hourlySale[hIndex];
         }
 
         td.textContent = sum;
@@ -121,27 +149,46 @@ function renderFr(table) {
 
     td.textContent = totalTotal;
 
-}
+};
+var places = []
+places.push(new Cities('Seattle', 23, 65, 6.3));
+places.push(new Cities('Tokyo', 3, 24, 1.2));
+places.push(new Cities('Dubai', 11, 38, 3.7));
+places.push(new Cities('Paris', 20, 38, 2.8));
+places.push(new Cities('Lima', 2, 16, 4.6));
 
-var seattle = new Cities('Seattle', 23, 65, 6.3);
-var Tokoy = new Cities('Tokyo', 3, 24, 1.2);
-var Dubai = new Cities('Dubai', 11, 38, 3.7);
-var Paris = new Cities('Paris', 20, 38, 2.8);
-var Lima = new Cities('Lima', 2, 16, 4.6);
-
-var places = [seattle, Tokoy, Dubai, Paris, Lima];
-
+///////////////////////////
 renderHr(table);
 
-for (var i = 0; i < places.length; i++) {
+for (let k = 0; k < places.length; k++) {
 
-    var shop = places[i];
+    var towns = places[k];
+    towns.render(table);
 
-    shop.render(table);
 }
+
+
 renderFr(table);
 
+function formNew(event) {
+    event.preventDefault();
 
+    var name = event.target.city.value;
+    var min = parseInt(event.target.min.value);
+    var max = parseInt(event.target.max.value);
+    var avg = parseFloat(event.target.Averagenew.value);
 
+    var newLocation = new Cities(name, min, max, avg);
 
+    places.push(newLocation);
 
+    table.removeChild(foot)
+
+    newLocation.row(table);
+
+    renderFr(table);
+
+}
+
+var form = document.getElementById('citiesForm')
+form.addEventListener('submit', formNew)
