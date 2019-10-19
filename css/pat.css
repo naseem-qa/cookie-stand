@@ -26,6 +26,7 @@ ul li {
 footer {
     text-align: center;
     background-color: peru;
+
 }
 
 .center {
@@ -34,12 +35,66 @@ footer {
     margin-right: auto;
     width: 50%;
   }
-  h3 {
+
+  .sa {
       text-align: center;
       padding: 20px;
   }
   ol {
-      padding: 10px;
+      padding: 0px 0px 30px 50px;
+      font-style: italic;
+      font-size: xx-large;
+      font-style: oblique;
+      font-style: bold;
+
   }
+  
+
+  #fishies {
+    float: right;    
+             margin: 0px 10px 10px 10px; 
+             padding: 10px;
+             margin: 30px;
+            
+  }
+  #n {
+      background-color: peru;
+  }
+ .ul {
+    padding: 0px 0px 30px 50px;
+      font-style: italic;
+      font-size: xx-large;
+      font-style: bold;
+  }
+
+
+     #m { float: right; 
+            margin: 40px;
+        } 
+
+        #column1of3  { 
+            width: 300px;
+             float: right; 
+            padding-bottom: 10px;
+            }
+
+            #w { float: right; 
+                margin: 50px;
+            } 
+    #ss {
+        padding: 0px 0px 30px 50px;
+        font-style: italic;
+        font-size: xx-large;
+        font-style: oblique;
+        font-style: bold;
+        text-align: center;
+    
+    }
+
+    
+    
+
+    
+
   
 
